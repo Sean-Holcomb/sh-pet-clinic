@@ -2,9 +2,11 @@ package holcomb.sean.shpetclinic.services.map;
 
 import holcomb.sean.shpetclinic.model.Pet;
 import holcomb.sean.shpetclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
     @Override
     public Set<Pet> findAll() {

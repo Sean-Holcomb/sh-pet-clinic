@@ -1,11 +1,11 @@
 package holcomb.sean.shpetclinic.services.map;
 
 import holcomb.sean.shpetclinic.model.Pet;
-import holcomb.sean.shpetclinic.services.CrudService;
+import holcomb.sean.shpetclinic.services.PetService;
 
 import java.util.Set;
 
-public class PetServiceMap extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long> {
+public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
     @Override
     public Set<Pet> findAll() {
         return super.findAll();

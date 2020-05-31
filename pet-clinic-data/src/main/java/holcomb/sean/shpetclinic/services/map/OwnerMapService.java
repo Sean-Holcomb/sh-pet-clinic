@@ -5,11 +5,13 @@ import holcomb.sean.shpetclinic.model.Pet;
 import holcomb.sean.shpetclinic.services.OwnerService;
 import holcomb.sean.shpetclinic.services.PetService;
 import holcomb.sean.shpetclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetTypeService petTypeService;

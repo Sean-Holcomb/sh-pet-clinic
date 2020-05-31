@@ -1,10 +1,7 @@
 package holcomb.sean.shpetclinic.bootstrap;
 
 import holcomb.sean.shpetclinic.model.*;
-import holcomb.sean.shpetclinic.services.OwnerService;
-import holcomb.sean.shpetclinic.services.PetTypeService;
-import holcomb.sean.shpetclinic.services.SpecialtyService;
-import holcomb.sean.shpetclinic.services.VetService;
+import holcomb.sean.shpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,13 +14,15 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -50,7 +49,7 @@ public class DataLoader implements CommandLineRunner {
         owner1.setAddress("123 Brickerel");
         owner1.setCity("Miami");
         owner1.setTelephone("12345678901");
-        ownerService.save(owner1);
+
 
         Pet mikesPet = new Pet();
         mikesPet.setPetType(savedDogPetType);
@@ -59,20 +58,31 @@ public class DataLoader implements CommandLineRunner {
         mikesPet.setName("Rosco");
         owner1.getPets().add(mikesPet);
 
+        ownerService.save(owner1);
+
         Owner owner2 = new Owner();
         owner2.setFirstName("Fiona");
         owner2.setLastName("Glenanne");
         owner2.setAddress("123 Brickerel");
         owner2.setCity("Miami");
         owner2.setTelephone("12345678901");
-        ownerService.save(owner2);
 
         Pet fionasCat = new Pet();
         fionasCat.setName("Just Cat");
         fionasCat.setOwner(owner2);
         fionasCat.setBirthDate(LocalDate.now());
         fionasCat.setPetType(savedCatPetType);
+
         owner2.getPets().add(fionasCat);
+
+
+        ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(fionasCat);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy cat");
+        visitService.save(catVisit);
 
         System.out.println("Loaded Owners...");
 

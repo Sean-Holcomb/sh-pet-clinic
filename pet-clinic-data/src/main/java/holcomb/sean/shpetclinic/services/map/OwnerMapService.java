@@ -8,6 +8,8 @@ import holcomb.sean.shpetclinic.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -73,5 +75,13 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
                 .orElse(null);
     }
 
-
+    @Override
+    public List<Owner> findAllByLastNameLike(String lastName) {
+        List<Owner> owners = new ArrayList<>();
+        this.findAll()
+                .stream()
+                .filter(owner -> owner.getLastName().toLowerCase().contains(lastName.toLowerCase()))
+                .forEachOrdered(owners::add);
+        return owners;
+    }
 }

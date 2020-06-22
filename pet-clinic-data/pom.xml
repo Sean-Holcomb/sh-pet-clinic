@@ -3,12 +3,12 @@
     <parent>
         <artifactId>sh-pet-clinic</artifactId>
         <groupId>holcomb.sean</groupId>
-        <version>0.0.3-SNAPSHOT</version>
+        <version>0.0.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>pet-clinic-data</artifactId>
-  <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.2</version>
 
     <properties>
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>

@@ -5,6 +5,7 @@ jobs:
       - image: circleci/openjdk:11-browsers-legacy
     steps:
       - checkout
+      - run: mvn clean
       - run:
           name: Generate Cache Checksum
           command: find . -name 'pom.xml' | sort | xargs cat > /tmp/maven_cache_seed

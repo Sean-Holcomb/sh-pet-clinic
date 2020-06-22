@@ -1,0 +1,160 @@
+Index: pet-clinic-web/src/main/resources/templates/notImplemented.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pet-clinic-web/src/main/resources/templates/notImplemented.html	(revision 33e553b11454df9167ccc3a4220de2c8654df681)
++++ pet-clinic-web/src/main/resources/templates/notImplemented.html	(date 1592190604390)
+@@ -1,10 +1,10 @@
+ <!DOCTYPE html>
+-<html lang="en" xmlns:th="http://www.thymeleaf.org">
++<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+ <head>
+-    <meta charset="UTF-8">
++    <meta charset="UTF-8"/>
+     <title>Not Implemented</title>
+ </head>
+ <body>
+-    <h2 th:text="'Not Implemented Yet'">text</h2>
++    <h2 th:text="'Not Implemented Yet!!!!'">Not Implemented Yet!</h2>
+ </body>
+ </html>
+\ No newline at end of file
+Index: pet-clinic-web/src/main/resources/templates/vets/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pet-clinic-web/src/main/resources/templates/vets/index.html	(revision 33e553b11454df9167ccc3a4220de2c8654df681)
++++ pet-clinic-web/src/main/resources/templates/vets/index.html	(date 1592190604584)
+@@ -1,27 +1,28 @@
+ <!DOCTYPE html>
+ <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'vets')}">
+ <head>
+-    <meta charset="UTF-8">
++    <meta charset="UTF-8"/>
+     <title>List of Vets</title>
+ </head>
+ <body>
+-    <!--*@thymesVar id="vet" type="holcomb.sean.shpetclinic.model.Vet"*-->
+-    <h2 th:text="'List of Vets'">List of Vets...</h2>
+-    <table  class="table table-striped">
++<!--/*@thymesVar id="vet" type="guru.springframework.sfgpetclinic.model.Vet"*/-->
++<h2>Veterinarians</h2>
++
++<table id="vets" class="table table-striped">
+     <thead>
+     <tr>
+-        <th>Id</th>
+-        <th>First Name</th>
+-        <th>Last Name</th>
++        <th>Name</th>
++        <th>Specialties</th>
+     </tr>
+     </thead>
+     <tbody>
+     <tr th:each="vet : ${vets}">
+-        <td th:text="${vet.id}">1</td>
+-        <td th:text="${vet.firstName}">Joc</td>
+-        <td th:text="${vet.lastName}">Buck</td>
++        <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
++        <td><span th:each="specialty : ${vet.specialities}"
++                  th:text="${specialty.description + ' '}" /> <span
++                th:if="${vet?.specialities?.size() == 0}">none</span></td>
+     </tr>
+     </tbody>
+-    </table>
++</table>
+ </body>
+ </html>
+\ No newline at end of file
+Index: pet-clinic-web/src/main/resources/templates/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pet-clinic-web/src/main/resources/templates/index.html	(revision 33e553b11454df9167ccc3a4220de2c8654df681)
++++ pet-clinic-web/src/main/resources/templates/index.html	(date 1592190604374)
+@@ -1,16 +1,17 @@
+ <!DOCTYPE html>
+ <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+ <head>
+-    <meta charset="UTF-8">
++    <meta charset="UTF-8"/>
+     <title>Pet Clinic Index</title>
+ </head>
+ <body>
+-<!--*@thymesVar id="owner" type="holcomb.sean.shpetclinic.model.Owner"*-->
+-<h2 th:text="#{welcome}">Welcome</h2>
+-<div class="row">
+-    <div class="col-md-12">
+-        <img class="img-responsive" src="../static/resources/images/pets.png" th:src="@{/resources/images/pets.png}"/>
+-    </div>
+-</div>
++    <h2 th:text="#{welcome}">Welcome</h2>
++
++    <div class="row">
++        <div class="col-md-12">
++            <img class="img-responsive" src="../static/resources/images/pets.png" th:src="@{/resources/images/pets.png}"/>
++        </div>
++    </div>
++
+ </body>
+ </html>
+\ No newline at end of file
+Index: pet-clinic-web/src/main/resources/templates/owners/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pet-clinic-web/src/main/resources/templates/owners/index.html	(revision 33e553b11454df9167ccc3a4220de2c8654df681)
++++ pet-clinic-web/src/main/resources/templates/owners/index.html	(date 1592190604496)
+@@ -1,27 +1,28 @@
+ <!DOCTYPE html>
+ <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+ <head>
+-    <meta charset="UTF-8">
++    <meta charset="UTF-8"/>
+     <title>List of Pet Owners</title>
+ </head>
+ <body>
+-<!--*@thymesVar id="owner" type="holcomb.sean.shpetclinic.model.Owner"*-->
+-    <h2 th:text="'List of Owners'">Owners List</h2>
+-    <table class="table table-striped">
+-        <thead>
+-        <tr>
+-            <th style="width: 150px;">Id</th>
+-            <th style="width: 150px;">First Name</th>
+-            <th style="width: 150px;">Last Name</th>
+-        </tr>
+-        </thead>
+-        <tbody>
+-        <tr th:each="owner : ${owners}">
+-            <td th:text="${owner.id}">1</td>
+-            <td th:text="${owner.firstName}">Joc</td>
+-            <td th:text="${owner.lastName}">Buck</td>
+-        </tr>
+-        </tbody>
+-    </table>
++<!--/*@thymesVar id="owner" type="guru.springframework.sfgpetclinic.model.Owner"*/-->
++<h2 th:text="'List of Owners'">Owners List</h2>
++
++<table class="table table-striped">
++    <thead>
++    <tr>
++        <th style="width: 150px;">Id</th>
++        <th style="width: 150px;">First Name</th>
++        <th style="width: 150px;">Last Name</th>
++    </tr>
++    </thead>
++    <tbody>
++    <tr th:each="owner : ${owners}">
++        <td th:text="${owner.id}">1</td>
++        <td th:text="${owner.firstName}">Joe</td>
++        <td th:text="${owner.lastName}">Buck</td>
++    </tr>
++    </tbody>
++</table>
+ </body>
+ </html>
+\ No newline at end of file
